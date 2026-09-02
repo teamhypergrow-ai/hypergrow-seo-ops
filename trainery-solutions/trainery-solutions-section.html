@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trainery.ai Solutions — Problem to Solution</title>
+<style>
+:root {
+  --bg: #f6f1e8;
+  --ink: #0c2b39;
+  --muted: #657278;
+  --line: #d9cbb4;
+  --card: #ffffff;
+  --red: #d8291f;
+  --red-soft: #fff0ed;
+  --green: #17b67a;
+  --green-dark: #0b8a5d;
+  --green-soft: #eaf8f2;
+  --shadow: 0 18px 42px rgba(44, 35, 22, .10);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #fff;
+}
+button { font: inherit; }
+.trainery-solutions {
+  background: var(--bg);
+  overflow: hidden;
+  padding: 58px 20px 48px;
+}
+.ts-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ts-kicker {
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.ts-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+.ts-tab {
+  border: 1px solid rgba(12,43,57,.08);
+  background: rgba(255,255,255,.42);
+  color: #556369;
+  padding: 9px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: .22s ease;
+}
+.ts-tab:hover { background: #fff; }
+.ts-tab.active {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(55,42,25,.08);
+}
+.ts-toggle {
+  display: inline-flex;
+  padding: 3px;
+  background: #eee6d9;
+  border-radius: 999px;
+  margin: 0 auto 18px;
+}
+.ts-mode {
+  border: 0;
+  background: transparent;
+  color: #39484e;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .22s ease;
+}
+.ts-mode.active {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(75,58,35,.10);
+}
+.ts-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4.7vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  font-weight: 500;
+  max-width: 850px;
+  margin: 0 auto 12px;
+  color: #081f2c;
+}
+.ts-copy {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #556268;
+  font-size: 15px;
+  line-height: 1.58;
+  min-height: 48px;
+}
+.ts-stage {
+  position: relative;
+  max-width: 1120px;
+  height: 390px;
+  margin: 28px auto 0;
+}
+.ts-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.ts-line {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke .45s ease, opacity .45s ease, stroke-dasharray .45s ease;
+}
+.ts-stage.solution .ts-line {
+  stroke: var(--green);
+  stroke-dasharray: 8 10;
+  animation: flowDash 8s linear infinite;
+}
+.ts-center-dot {
+  fill: var(--line);
+  transition: fill .35s ease;
+}
+.ts-stage.solution .ts-center-dot { fill: var(--green); }
+.ts-node {
+  position: absolute;
+  width: 250px;
+  min-height: 68px;
+  border: 1px solid rgba(12,43,57,.055);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  text-align: left;
+  transition: left .55s cubic-bezier(.2,.8,.2,1), right .55s cubic-bezier(.2,.8,.2,1), top .55s cubic-bezier(.2,.8,.2,1), bottom .55s cubic-bezier(.2,.8,.2,1), transform .55s cubic-bezier(.2,.8,.2,1), border-color .35s ease;
+}
+.ts-node-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: #edf1f1;
+  color: #173e4b;
+  font-size: 14px;
+  font-weight: 900;
+  transition: .35s ease;
+}
+.ts-node-label {
+  color: #8a9599;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.ts-node-value {
+  color: #142d37;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.ts-stage.problem .ts-node:nth-of-type(1) { left: 4%; top: 177px; transform: rotate(-.5deg); }
+.ts-stage.problem .ts-node:nth-of-type(2) { left: 31%; top: 42px; transform: rotate(.4deg); }
+.ts-stage.problem .ts-node:nth-of-type(3) { right: 4%; top: 92px; transform: rotate(-1.8deg); }
+.ts-stage.problem .ts-node:nth-of-type(4) { right: 27%; bottom: 10px; transform: rotate(.4deg); }
+.ts-stage.solution .ts-node:nth-of-type(1) { left: 9%; top: 168px; transform: none; border-color: rgba(23,182,122,.12); }
+.ts-stage.solution .ts-node:nth-of-type(2) { left: 34%; top: 52px; transform: none; border-color: rgba(23,182,122,.12); }
+.ts-stage.solution .ts-node:nth-of-type(3) { right: 9%; top: 96px; transform: none; border-color: rgba(23,182,122,.12); }
+.ts-stage.solution .ts-node:nth-of-type(4) { right: 30%; bottom: 20px; transform: none; border-color: rgba(23,182,122,.12); }
+.ts-stage.solution .ts-node-icon {
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+.ts-center {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--red);
+  color: #fff;
+  padding: 11px 17px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(194,39,29,.20);
+  transition: .38s ease;
+  white-space: nowrap;
+}
+.ts-center-icon {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.17);
+  font-size: 11px;
+}
+.ts-stage.solution .ts-center {
+  background: var(--green-dark);
+  box-shadow: 0 9px 22px rgba(11,138,93,.22);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+.ts-spark {
+  position: absolute;
+  color: #ddceb4;
+  font-size: 22px;
+  opacity: .7;
+  animation: spark 2.5s ease-in-out infinite;
+}
+.ts-spark.s1 { left: 31%; top: 17px; }
+.ts-spark.s2 { right: 20%; top: 126px; animation-delay: .8s; }
+.ts-spark.s3 { left: 16%; bottom: 94px; animation-delay: 1.4s; }
+.ts-stage.solution .ts-spark { color: #86ceb0; opacity: .55; }
+.ts-note {
+  margin-top: -7px;
+  color: #88918f;
+  font-size: 12px;
+}
+@keyframes flowDash { to { stroke-dashoffset: -180; } }
+@keyframes spark {
+  0%, 100% { opacity: .3; transform: scale(.9); }
+  50% { opacity: .9; transform: scale(1.08); }
+}
+@media (max-width: 820px) {
+  .trainery-solutions { padding: 38px 14px; }
+  .ts-tab { font-size: 11px; padding: 8px 10px; }
+  .ts-heading { font-size: 40px; }
+  .ts-copy { font-size: 14px; }
+  .ts-stage { height: 540px; }
+  .ts-stage svg, .ts-spark { display: none; }
+  .ts-node {
+    width: min(82vw, 350px);
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+  .ts-node:nth-of-type(1) { top: 24px !important; }
+  .ts-node:nth-of-type(2) { top: 128px !important; }
+  .ts-node:nth-of-type(3) { top: 232px !important; }
+  .ts-node:nth-of-type(4) { top: 336px !important; bottom: auto !important; }
+  .ts-center { top: 488px; max-width: 90vw; white-space: normal; text-align: left; }
+  .ts-note { margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<section class="trainery-solutions" id="trainery-solutions">
+  <div class="ts-wrap">
+    <div class="ts-kicker">Solutions</div>
+
+    <div class="ts-tabs" role="tablist" aria-label="Trainery solutions">
+      <button class="ts-tab active" type="button" data-solution="operations">Corporate Learning Operations</button>
+      <button class="ts-tab" type="button" data-solution="compliance">Compliance Training Software</button>
+      <button class="ts-tab" type="button" data-solution="extended">Extended Enterprise Training</button>
+    </div>
+
+    <div class="ts-toggle" aria-label="Problem and solution view">
+      <button class="ts-mode active" type="button" data-mode="problem">Problem</button>
+      <button class="ts-mode" type="button" data-mode="solution">Solution</button>
+    </div>
+
+    <h2 class="ts-heading" id="tsHeading">Training operations are slowing your team down</h2>
+    <p class="ts-copy" id="tsCopy">Important training work gets scattered across spreadsheets, inboxes, calendars and separate systems, making coordination slower and visibility harder.</p>
+
+    <div class="ts-stage problem" id="tsStage">
+      <svg viewBox="0 0 1120 390" aria-hidden="true">
+        <path id="tsPath1" class="ts-line" d="M300 235 H448 V210 H560" />
+        <path id="tsPath2" class="ts-line" d="M466 95 V180 Q466 210 500 210 H560" />
+        <path id="tsPath3" class="ts-line" d="M835 135 H700 Q662 135 662 175 V210 H560" />
+        <path id="tsPath4" class="ts-line" d="M705 324 V270 Q705 242 670 242 H560" />
+        <circle class="ts-center-dot" cx="560" cy="210" r="4" />
+      </svg>
+
+      <span class="ts-spark s1">ϟ</span>
+      <span class="ts-spark s2">ϟ</span>
+      <span class="ts-spark s3">ϟ</span>
+
+      <div class="ts-node">
+        <div class="ts-node-icon" id="tsIcon1">X</div>
+        <div><div class="ts-node-label" id="tsLabel1">Spreadsheet</div><div class="ts-node-value" id="tsValue1">Course assignments tracked manually</div></div>
+      </div>
+      <div class="ts-node">
+        <div class="ts-node-icon" id="tsIcon2">@</div>
+        <div><div class="ts-node-label" id="tsLabel2">Email</div><div class="ts-node-value" id="tsValue2">Trainer availability and follow-ups</div></div>
+      </div>
+      <div class="ts-node">
+        <div class="ts-node-icon" id="tsIcon3">C</div>
+        <div><div class="ts-node-label" id="tsLabel3">Calendar</div><div class="ts-node-value" id="tsValue3">ILT / VILT sessions planned separately</div></div>
+      </div>
+      <div class="ts-node">
+        <div class="ts-node-icon" id="tsIcon4">R</div>
+        <div><div class="ts-node-label" id="tsLabel4">Separate records</div><div class="ts-node-value" id="tsValue4">Registrations and completion data elsewhere</div></div>
+      </div>
+
+      <div class="ts-center" id="tsCenter">
+        <span class="ts-center-icon" id="tsCenterIcon">!</span>
+        <span id="tsCenterText">Training work is fragmented</span>
+      </div>
+    </div>
+
+    <div class="ts-note">Switch to Solution to see how the fragmented workflow becomes connected.</div>
+  </div>
+</section>
+
+<script>
+const TS_DATA = {
+  operations: {
+    problem: {
+      heading: 'Training operations are slowing your team down',
+      copy: 'Important training work gets scattered across spreadsheets, inboxes, calendars and separate systems, making coordination slower and visibility harder.',
+      center: 'Training work is fragmented',
+      nodes: [
+        ['Spreadsheet', 'Course assignments tracked manually', 'X'],
+        ['Email', 'Trainer availability and follow-ups', '@'],
+        ['Calendar', 'ILT / VILT sessions planned separately', 'C'],
+        ['Separate records', 'Registrations and completion data elsewhere', 'R']
+      ]
+    },
+    solution: {
+      heading: 'Run learning operations from one connected workflow',
+      copy: 'Corporate Learning Operations connects learning administration with training operations so teams can plan, schedule, deliver and track training with shared visibility.',
+      center: 'Corporate Learning Operations',
+      nodes: [
+        ['Courses & learning paths', 'Course catalog, bundles and learning paths', 'C'],
+        ['ILT / VILT sessions', 'Events, sessions, calendars and recordings', 'S'],
+        ['Trainers & capacity', 'Trainers, locations, enrollment, waitlists and capacity', 'T'],
+        ['Learning records', 'Registrations, records and learning activity', 'R']
+      ]
+    }
+  },
+  compliance: {
+    problem: {
+      heading: 'Compliance becomes risky when critical records are disconnected',
+      copy: 'Training requirements, certification expiry dates, CPE progress and audit evidence are often tracked in different places, making risk easy to miss until deadlines get close.',
+      center: 'Compliance risk is hard to see',
+      nodes: [
+        ['Spreadsheet', 'Certification expiry dates updated manually', 'X'],
+        ['Inbox reminders', 'Renewal follow-ups depend on email', '@'],
+        ['Separate CPE records', 'Progress is difficult to see in context', 'C'],
+        ['Audit folder', 'Evidence is assembled after the fact', 'A']
+      ]
+    },
+    solution: {
+      heading: 'See compliance status, risk and renewals in one place',
+      copy: 'Compliance Training Software connects training status with licenses, certifications, CPE progress, renewal forecasts, escalations and audit reporting.',
+      center: 'Compliance Training Software',
+      nodes: [
+        ['Training compliance', 'Compliant, at-risk and non-compliant visibility', 'T'],
+        ['Licenses & certifications', 'Credential and certification tracking', 'L'],
+        ['CPE visibility', 'Attainment and behind-schedule risk', 'C'],
+        ['Renewals & audit', 'Forecasts, escalations, reports and audit workflows', 'R']
+      ]
+    }
+  },
+  extended: {
+    problem: {
+      heading: 'External training becomes difficult to scale when every step is separate',
+      copy: 'External learners, contractors, catalogs, registrations and events can quickly spread across forms, spreadsheets, inboxes and calendars.',
+      center: 'External training is fragmented',
+      nodes: [
+        ['Spreadsheet', 'External learners maintained manually', 'X'],
+        ['Email forms', 'Registration requests handled one by one', '@'],
+        ['Separate catalog', 'Course access lives in another process', 'L'],
+        ['Calendar', 'Events and attendance coordinated separately', 'C']
+      ]
+    },
+    solution: {
+      heading: 'Bring external learners and training activity into one operational view',
+      copy: 'Extended Enterprise Training brings external learner administration, catalogs, registrations, organizations and events together for clearer delivery and reporting.',
+      center: 'Extended Enterprise Training',
+      nodes: [
+        ['External learners', 'Contractor and external learner administration', 'E'],
+        ['Catalog access', 'External training catalog visibility', 'L'],
+        ['Registration funnel', 'Registration activity in one workflow', 'R'],
+        ['Organizations & events', 'Organization, event and registration reporting', 'O']
+      ]
+    }
+  }
+};
+
+let tsSolution = 'operations';
+let tsMode = 'problem';
+const stage = document.getElementById('tsStage');
+const heading = document.getElementById('tsHeading');
+const copy = document.getElementById('tsCopy');
+const centerText = document.getElementById('tsCenterText');
+const centerIcon = document.getElementById('tsCenterIcon');
+
+function renderTrainerySolutions() {
+  const data = TS_DATA[tsSolution][tsMode];
+
+  heading.animate(
+    [{ opacity: .25, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }],
+    { duration: 260, easing: 'ease-out' }
+  );
+
+  heading.textContent = data.heading;
+  copy.textContent = data.copy;
+  centerText.textContent = data.center;
+  centerIcon.textContent = tsMode === 'solution' ? '✓' : '!';
+
+  data.nodes.forEach((node, index) => {
+    const n = index + 1;
+    document.getElementById('tsLabel' + n).textContent = node[0];
+    document.getElementById('tsValue' + n).textContent = node[1];
+    document.getElementById('tsIcon' + n).textContent = node[2];
+  });
+
+  stage.classList.toggle('problem', tsMode === 'problem');
+  stage.classList.toggle('solution', tsMode === 'solution');
+}
+
+document.querySelectorAll('.ts-tab').forEach((button) => {
+  button.addEventListener('click', () => {
+    tsSolution = button.dataset.solution;
+    document.querySelectorAll('.ts-tab').forEach((item) => item.classList.toggle('active', item === button));
+    renderTrainerySolutions();
+  });
+});
+
+document.querySelectorAll('.ts-mode').forEach((button) => {
+  button.addEventListener('click', () => {
+    tsMode = button.dataset.mode;
+    document.querySelectorAll('.ts-mode').forEach((item) => item.classList.toggle('active', item === button));
+    renderTrainerySolutions();
+  });
+});
+</script>
+</body>
+</html>
