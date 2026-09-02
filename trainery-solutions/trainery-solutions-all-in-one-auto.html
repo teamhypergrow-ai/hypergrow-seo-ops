@@ -3,38 +3,205 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Trainery.ai Solutions — All-in-One Auto Problem/Solution</title>
+<title>Trainery.ai Solutions — Auto Problem to Solution</title>
 <style>
-:root{--bg:#f6f1e8;--ink:#0b2b39;--muted:#66747a;--line:#ddcfba;--card:#fff;--red:#d92c22;--red-soft:#fff0ed;--green:#17b67a;--green-dark:#0c8a5d;--green-soft:#eaf8f2;--shadow:0 16px 38px rgba(50,39,23,.09)}
-*{box-sizing:border-box}html,body{margin:0}body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff}.section{background:var(--bg);padding:58px 20px 56px;overflow:hidden}.wrap{max-width:1240px;margin:0 auto;text-align:center}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--green-dark);margin-bottom:12px}.state-switch{display:inline-flex;align-items:center;gap:3px;padding:3px;background:#ece4d7;border-radius:999px;margin-bottom:16px}.state{position:relative;padding:8px 16px;border-radius:999px;font-size:12px;font-weight:800;color:#5d676b;transition:.3s ease}.state.active{background:#fff;color:var(--ink);box-shadow:0 3px 10px rgba(70,54,31,.10)}.timer{position:absolute;left:8px;right:8px;bottom:2px;height:2px;border-radius:99px;overflow:hidden;background:transparent}.state.active .timer:after{content:"";display:block;height:100%;background:currentColor;animation:countdown 3s linear forwards}h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(38px,4.9vw,60px);letter-spacing:-.04em;line-height:1.02;margin:0 auto 12px;max-width:900px}.intro{max-width:760px;margin:0 auto 34px;color:#556369;font-size:15px;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}.solution-card{position:relative;min-height:430px;background:rgba(255,255,255,.55);border:1px solid rgba(11,43,57,.07);border-radius:24px;padding:22px;overflow:hidden;transition:.45s ease}.solution-card.solution{background:rgba(255,255,255,.78);border-color:rgba(23,182,122,.18);box-shadow:0 14px 34px rgba(23,134,91,.07)}.card-head{position:relative;z-index:5}.number{font-size:10px;font-weight:800;letter-spacing:.12em;color:#9aa4a4}.card-title{font-size:20px;line-height:1.15;letter-spacing:-.02em;margin:7px 0 6px}.card-desc{font-size:13px;line-height:1.48;color:var(--muted);margin:0;min-height:40px}.scene{position:relative;height:268px;margin-top:16px}.scene svg{position:absolute;inset:0;width:100%;height:100%}.wire{fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:.5s ease}.solution-card.solution .wire{stroke:var(--green);stroke-dasharray:6 8;animation:flow 7s linear infinite}.fragment{position:absolute;width:154px;min-height:56px;padding:10px 11px;border-radius:11px;background:#fff;border:1px solid rgba(11,43,57,.06);box-shadow:var(--shadow);transition:all .55s cubic-bezier(.2,.8,.2,1);z-index:2}.fragment .tag{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#8c979a;font-weight:800;margin-bottom:4px}.fragment .text{font-size:11.5px;line-height:1.3;font-weight:700;color:#18323d}.f1{left:0;top:30px;transform:rotate(-1.4deg)}.f2{right:0;top:84px;transform:rotate(1.5deg)}.f3{left:58px;bottom:8px;transform:rotate(-.6deg)}.hub{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:4;display:inline-flex;align-items:center;gap:7px;max-width:240px;padding:9px 12px;border-radius:999px;background:var(--red);color:white;font-size:11px;line-height:1.2;font-weight:800;box-shadow:0 8px 18px rgba(193,38,28,.18);transition:.45s ease;text-align:center}.hub-icon{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.17);display:grid;place-items:center;flex:0 0 auto}.solution-card.solution .hub{background:var(--green-dark);box-shadow:0 8px 20px rgba(12,138,93,.22);top:50%;transform:translate(-50%,-50%) scale(1.03)}.solution-card.solution .fragment{border-color:rgba(23,182,122,.14);box-shadow:0 12px 28px rgba(16,120,81,.08);transform:none}.solution-card.solution .f1{left:4px;top:20px}.solution-card.solution .f2{right:4px;top:20px}.solution-card.solution .f3{left:50%;bottom:3px;transform:translateX(-50%)}.solution-card.solution .fragment .tag{color:var(--green-dark)}.badge{position:absolute;right:18px;top:18px;width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 7px rgba(217,44,34,.07);transition:.4s ease}.solution-card.solution .badge{background:var(--green);box-shadow:0 0 0 7px rgba(23,182,122,.08)}.footer-note{margin-top:20px;color:#818b8b;font-size:12px}.footer-note strong{color:var(--ink)}@keyframes countdown{from{width:0}to{width:100%}}@keyframes flow{to{stroke-dashoffset:-120}}@media(max-width:980px){.grid{grid-template-columns:1fr}.solution-card{min-height:370px}.scene{height:225px}.fragment{width:180px}.f3{left:50%;transform:translateX(-50%) rotate(-.6deg)}.solution-card.solution .f3{transform:translateX(-50%)}}@media(max-width:560px){.section{padding:40px 12px}.solution-card{padding:18px}.fragment{width:136px}.card-title{font-size:19px}.scene{height:245px}.f1{left:0}.f2{right:0}.f3{bottom:0}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:root{
+  --bg:#f7f4ee;
+  --ink:#10323f;
+  --muted:#718087;
+  --line:#d9d0c2;
+  --red:#d74a3d;
+  --red-soft:#f9e5e0;
+  --green:#19b87b;
+  --green-dark:#0d835b;
+  --green-soft:#e8f7f0;
+  --blue:#4a7fd0;
+  --violet:#8066c9;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff}
+.solution-section{background:var(--bg);padding:70px 24px 54px;overflow:hidden}
+.solution-wrap{max-width:1280px;margin:0 auto;text-align:center}
+.kicker{font-size:11px;line-height:1;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-dark);margin-bottom:13px}
+.state-toggle{display:inline-flex;align-items:center;padding:3px;background:#ebe6dc;border-radius:999px;margin-bottom:20px}
+.state-label{position:relative;min-width:78px;padding:8px 14px;border-radius:999px;font-size:11px;font-weight:600;color:#7a817f;transition:.3s ease}
+.state-label.active{background:#fff;color:var(--ink);box-shadow:0 3px 12px rgba(63,48,27,.08)}
+.state-label.active:after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:20px;background:currentColor;transform-origin:left;animation:timer 3s linear forwards}
+h1{margin:0 auto 10px;max-width:840px;font-size:clamp(34px,4.3vw,54px);line-height:1.05;letter-spacing:-.042em;font-weight:520;color:#0a2936}
+.intro{max-width:650px;margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55}
+.canvas{position:relative;margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);min-height:440px}
+.lane{position:relative;padding:0 34px;min-width:0}
+.lane+.lane{border-left:1px solid rgba(16,50,63,.08)}
+.lane-title{margin:0;font-size:18px;line-height:1.22;font-weight:610;letter-spacing:-.018em;color:#12333f}
+.lane-sub{margin:7px auto 0;max-width:250px;font-size:12px;line-height:1.45;color:#899395;transition:.35s ease}
+.motion{position:relative;height:330px;margin-top:22px}
+.motion svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.route{fill:none;stroke:var(--line);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:.55s ease}
+.solution .route{stroke:var(--green);stroke-width:1.7;stroke-dasharray:6 8;animation:dash 7s linear infinite}
+.node{position:absolute;width:142px;min-height:52px;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:11px;background:#fff;border:1px solid rgba(16,50,63,.05);box-shadow:0 10px 26px rgba(57,44,26,.08);text-align:left;transition:all .65s cubic-bezier(.2,.8,.2,1);z-index:3}
+.node-icon{width:28px;height:28px;flex:0 0 auto;border-radius:8px;background:#eef2f1;display:grid;place-items:center;font-size:11px;font-weight:800;color:#35505b;transition:.45s ease}
+.node-label{font-size:10.5px;line-height:1.25;font-weight:570;color:#324b54;transition:.35s ease}
+.problem .n1{left:2%;top:36px;transform:rotate(-4deg)}
+.problem .n2{right:0;top:122px;transform:rotate(3deg)}
+.problem .n3{left:20%;bottom:20px;transform:rotate(-2deg)}
+.solution .n1{left:50%;top:24px;transform:translateX(-50%)}
+.solution .n2{right:2%;top:154px;transform:none}
+.solution .n3{left:2%;top:154px;bottom:auto;transform:none}
+.solution .node{border-color:rgba(25,184,123,.14);box-shadow:0 10px 28px rgba(20,132,91,.07)}
+.solution .node-icon{background:var(--green-soft);color:var(--green-dark)}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:116px;height:116px;border-radius:50%;display:grid;place-items:center;z-index:4;transition:.55s cubic-bezier(.2,.8,.2,1)}
+.hub:before,.hub:after{content:"";position:absolute;border-radius:50%;inset:0;transition:.55s ease}
+.hub:before{border:1px solid rgba(215,74,61,.22);background:rgba(255,255,255,.38)}
+.hub:after{inset:13px;background:var(--red-soft);border:1px solid rgba(215,74,61,.12)}
+.hub-copy{position:relative;z-index:2;width:84px;font-size:10.5px;line-height:1.25;font-weight:650;color:#b64136}
+.solution .hub:before{border-color:rgba(25,184,123,.22);animation:ringPulse 2.2s ease-in-out infinite}
+.solution .hub:after{background:var(--green-soft);border-color:rgba(25,184,123,.14)}
+.solution .hub-copy{color:var(--green-dark)}
+.solution .hub{transform:translate(-50%,-50%) scale(1.05)}
+.particle{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:0;z-index:5;pointer-events:none}
+.solution .particle{opacity:1}
+.p1{left:50%;top:24%;animation:particle1 2.8s ease-in-out infinite}
+.p2{left:78%;top:51%;animation:particle2 3.1s ease-in-out infinite .25s}
+.p3{left:22%;top:51%;animation:particle3 3s ease-in-out infinite .55s}
+.warning{position:absolute;color:#d9cbb7;font-size:17px;font-weight:800;opacity:.65;transition:.4s ease;animation:floatWarn 2.5s ease-in-out infinite}
+.w1{left:10%;top:12px}.w2{right:9%;bottom:48px;animation-delay:.8s}
+.solution .warning{opacity:0;transform:scale(.6)}
+.footer-line{margin:8px auto 0;font-size:11px;color:#929a98;letter-spacing:.01em}
+.footer-line b{font-weight:600;color:#53666d}
+@keyframes timer{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dash{to{stroke-dashoffset:-140}}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.13);opacity:.3}}
+@keyframes floatWarn{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes particle1{0%{transform:translate(0,0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translate(0,76px);opacity:0}}
+@keyframes particle2{0%{transform:translate(0,0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translate(-78px,0);opacity:0}}
+@keyframes particle3{0%{transform:translate(0,0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translate(78px,0);opacity:0}}
+@media(max-width:960px){
+  .solution-section{padding:54px 16px 44px}
+  .canvas{grid-template-columns:1fr;gap:44px}
+  .lane{padding:0 10px}
+  .lane+.lane{border-left:0;border-top:1px solid rgba(16,50,63,.08);padding-top:38px}
+  .motion{max-width:420px;margin:22px auto 0}
+  .lane-sub{max-width:360px}
+}
+@media(max-width:520px){
+  h1{font-size:36px}
+  .intro{font-size:13px}
+  .motion{height:350px}
+  .node{width:132px}
+  .problem .n1{left:0}.problem .n2{right:0}.problem .n3{left:13%}
+  .solution .n2{right:0}.solution .n3{left:0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<section class="section">
-<div class="wrap">
-<div class="eyebrow">Solutions</div>
-<div class="state-switch" aria-live="polite"><div class="state active" id="problemState">Problem<div class="timer"></div></div><div class="state" id="solutionState">Solution<div class="timer"></div></div></div>
-<h1 id="mainHeading">Three training challenges. One connected way forward.</h1>
-<p class="intro" id="mainIntro">See how fragmented learning work becomes connected automatically across Trainery's three core solutions.</p>
-<div class="grid">
-<article class="solution-card" data-card="operations">
-<span class="badge"></span><div class="card-head"><div class="number">01</div><h2 class="card-title">Corporate Learning Operations</h2><p class="card-desc" data-desc>Training work is split across spreadsheets, inboxes, calendars and separate records.</p></div>
-<div class="scene"><svg viewBox="0 0 360 268" aria-hidden="true"><path class="wire" d="M120 58 H175 V125"/><path class="wire" d="M250 105 H190 V125"/><path class="wire" d="M135 230 V175 H180 V145"/></svg><div class="fragment f1"><div class="tag" data-tag1>Spreadsheet</div><div class="text" data-text1>Course assignments tracked manually</div></div><div class="fragment f2"><div class="tag" data-tag2>Email + calendar</div><div class="text" data-text2>Trainer and session coordination</div></div><div class="fragment f3"><div class="tag" data-tag3>Separate records</div><div class="text" data-text3>Registration and completion data elsewhere</div></div><div class="hub"><span class="hub-icon">!</span><span data-hub>Training operations are fragmented</span></div></div>
-</article>
-<article class="solution-card" data-card="compliance">
-<span class="badge"></span><div class="card-head"><div class="number">02</div><h2 class="card-title">Compliance Training Software</h2><p class="card-desc" data-desc>Credentials, CPE, renewals and audit evidence are difficult to see together.</p></div>
-<div class="scene"><svg viewBox="0 0 360 268" aria-hidden="true"><path class="wire" d="M120 58 H175 V125"/><path class="wire" d="M250 105 H190 V125"/><path class="wire" d="M135 230 V175 H180 V145"/></svg><div class="fragment f1"><div class="tag" data-tag1>Spreadsheet</div><div class="text" data-text1>Certification expiry dates</div></div><div class="fragment f2"><div class="tag" data-tag2>Email reminders</div><div class="text" data-text2>Renewal follow-ups</div></div><div class="fragment f3"><div class="tag" data-tag3>Audit folder</div><div class="text" data-text3>CPE and evidence assembled separately</div></div><div class="hub"><span class="hub-icon">!</span><span data-hub>Compliance risk is hard to see</span></div></div>
-</article>
-<article class="solution-card" data-card="extended">
-<span class="badge"></span><div class="card-head"><div class="number">03</div><h2 class="card-title">Extended Enterprise Training</h2><p class="card-desc" data-desc>External learners, registrations, catalogs and events spread across different processes.</p></div>
-<div class="scene"><svg viewBox="0 0 360 268" aria-hidden="true"><path class="wire" d="M120 58 H175 V125"/><path class="wire" d="M250 105 H190 V125"/><path class="wire" d="M135 230 V175 H180 V145"/></svg><div class="fragment f1"><div class="tag" data-tag1>Spreadsheet</div><div class="text" data-text1>External learner lists</div></div><div class="fragment f2"><div class="tag" data-tag2>Forms + inbox</div><div class="text" data-text2>Registration requests</div></div><div class="fragment f3"><div class="tag" data-tag3>Separate calendar</div><div class="text" data-text3>Catalog and event coordination</div></div><div class="hub"><span class="hub-icon">!</span><span data-hub>External training is fragmented</span></div></div>
-</article>
-</div>
-<div class="footer-note"><strong>Automatic story:</strong> Problem → Solution every 3 seconds. No clicks required.</div>
-</div>
+<section class="solution-section" aria-labelledby="solutionsHeading">
+  <div class="solution-wrap">
+    <div class="kicker">Solutions</div>
+    <div class="state-toggle" aria-live="polite">
+      <div class="state-label active" id="problemLabel">Problem</div>
+      <div class="state-label" id="solutionLabel">Solution</div>
+    </div>
+    <h1 id="solutionsHeading">From fragmented training to connected operations.</h1>
+    <p class="intro">Three common training challenges automatically transform into three connected Trainery solutions.</p>
+
+    <div class="canvas" id="canvas">
+      <section class="lane problem" data-lane="operations">
+        <h2 class="lane-title">Corporate Learning Operations</h2>
+        <p class="lane-sub" data-sub>Too many places to coordinate training.</p>
+        <div class="motion">
+          <svg viewBox="0 0 360 330" aria-hidden="true">
+            <path class="route" d="M90 72 C120 72 143 106 170 142"/>
+            <path class="route" d="M282 152 C245 152 218 154 190 163"/>
+            <path class="route" d="M100 276 C120 250 144 220 170 190"/>
+          </svg>
+          <span class="warning w1">↯</span><span class="warning w2">↯</span>
+          <div class="node n1"><div class="node-icon" data-i1>▦</div><div class="node-label" data-n1>Spreadsheet</div></div>
+          <div class="node n2"><div class="node-icon" data-i2>✉</div><div class="node-label" data-n2>Email + calendar</div></div>
+          <div class="node n3"><div class="node-icon" data-i3>▤</div><div class="node-label" data-n3>Separate records</div></div>
+          <div class="hub"><div class="hub-copy" data-hub>Fragmented training work</div></div>
+          <i class="particle p1"></i><i class="particle p2"></i><i class="particle p3"></i>
+        </div>
+      </section>
+
+      <section class="lane problem" data-lane="compliance">
+        <h2 class="lane-title">Compliance Training Software</h2>
+        <p class="lane-sub" data-sub>Compliance risk appears too late.</p>
+        <div class="motion">
+          <svg viewBox="0 0 360 330" aria-hidden="true">
+            <path class="route" d="M90 72 C120 72 143 106 170 142"/>
+            <path class="route" d="M282 152 C245 152 218 154 190 163"/>
+            <path class="route" d="M100 276 C120 250 144 220 170 190"/>
+          </svg>
+          <span class="warning w1">↯</span><span class="warning w2">↯</span>
+          <div class="node n1"><div class="node-icon" data-i1>▦</div><div class="node-label" data-n1>Expiry spreadsheet</div></div>
+          <div class="node n2"><div class="node-icon" data-i2>✉</div><div class="node-label" data-n2>Renewal emails</div></div>
+          <div class="node n3"><div class="node-icon" data-i3>⌁</div><div class="node-label" data-n3>Audit folders</div></div>
+          <div class="hub"><div class="hub-copy" data-hub>Hidden compliance risk</div></div>
+          <i class="particle p1"></i><i class="particle p2"></i><i class="particle p3"></i>
+        </div>
+      </section>
+
+      <section class="lane problem" data-lane="extended">
+        <h2 class="lane-title">Extended Enterprise Training</h2>
+        <p class="lane-sub" data-sub>External training is spread everywhere.</p>
+        <div class="motion">
+          <svg viewBox="0 0 360 330" aria-hidden="true">
+            <path class="route" d="M90 72 C120 72 143 106 170 142"/>
+            <path class="route" d="M282 152 C245 152 218 154 190 163"/>
+            <path class="route" d="M100 276 C120 250 144 220 170 190"/>
+          </svg>
+          <span class="warning w1">↯</span><span class="warning w2">↯</span>
+          <div class="node n1"><div class="node-icon" data-i1>▦</div><div class="node-label" data-n1>Learner lists</div></div>
+          <div class="node n2"><div class="node-icon" data-i2>✉</div><div class="node-label" data-n2>Registration forms</div></div>
+          <div class="node n3"><div class="node-icon" data-i3>◫</div><div class="node-label" data-n3>Separate events</div></div>
+          <div class="hub"><div class="hub-copy" data-hub>Scattered external training</div></div>
+          <i class="particle p1"></i><i class="particle p2"></i><i class="particle p3"></i>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer-line"><b>Auto-transforms every 3 seconds</b> — no interaction required.</div>
+  </div>
 </section>
+
 <script>
-const DATA={operations:{problem:{desc:'Training work is split across spreadsheets, inboxes, calendars and separate records.',hub:'Training operations are fragmented',nodes:[['Spreadsheet','Course assignments tracked manually'],['Email + calendar','Trainer and session coordination'],['Separate records','Registration and completion data elsewhere']]},solution:{desc:'Plan, schedule, deliver and track learning from one connected operational view.',hub:'Corporate Learning Operations',nodes:[['Courses & learning paths','Catalog, bundles and learning paths'],['ILT / VILT operations','Events, sessions, trainers, capacity and waitlists'],['Learning records','Registrations, records and activity tracking']]}},compliance:{problem:{desc:'Credentials, CPE, renewals and audit evidence are difficult to see together.',hub:'Compliance risk is hard to see',nodes:[['Spreadsheet','Certification expiry dates'],['Email reminders','Renewal follow-ups'],['Audit folder','CPE and evidence assembled separately']]},solution:{desc:'Connect training compliance, credentials, CPE, renewals and audit workflows in one view.',hub:'Compliance Training Software',nodes:[['Compliance status','Compliant, at-risk and non-compliant visibility'],['Credentials + CPE','License, certification and attainment tracking'],['Renewals + audit','Forecasts, escalations, reports and audit workflows']]}},extended:{problem:{desc:'External learners, registrations, catalogs and events spread across different processes.',hub:'External training is fragmented',nodes:[['Spreadsheet','External learner lists'],['Forms + inbox','Registration requests'],['Separate calendar','Catalog and event coordination']]},solution:{desc:'Bring external learner administration, catalogs, registrations and events into one operational view.',hub:'Extended Enterprise Training',nodes:[['External learners','Contractor and learner administration'],['Catalog + registrations','Catalog access and registration funnel'],['Organizations + events','Organization, event and registration reporting']]}}};
-let mode='problem';const cards=[...document.querySelectorAll('[data-card]')];const problemState=document.getElementById('problemState');const solutionState=document.getElementById('solutionState');function render(){problemState.classList.toggle('active',mode==='problem');solutionState.classList.toggle('active',mode==='solution');cards.forEach(card=>{const d=DATA[card.dataset.card][mode];card.classList.toggle('solution',mode==='solution');card.querySelector('[data-desc]').textContent=d.desc;card.querySelector('[data-hub]').textContent=d.hub;card.querySelector('.hub-icon').textContent=mode==='solution'?'✓':'!';d.nodes.forEach((n,i)=>{card.querySelector('[data-tag'+(i+1)+']').textContent=n[0];card.querySelector('[data-text'+(i+1)+']').textContent=n[1];});});}function cycle(){mode=mode==='problem'?'solution':'problem';render();}render();setInterval(cycle,3000);
+const DATA={
+  operations:{
+    problem:{sub:'Too many places to coordinate training.',hub:'Fragmented training work',nodes:[['▦','Spreadsheet'],['✉','Email + calendar'],['▤','Separate records']]},
+    solution:{sub:'Plan, schedule and track in one flow.',hub:'Corporate Learning Operations',nodes:[['◫','Courses & paths'],['◷','ILT / VILT'],['✓','Learning records']]}
+  },
+  compliance:{
+    problem:{sub:'Compliance risk appears too late.',hub:'Hidden compliance risk',nodes:[['▦','Expiry spreadsheet'],['✉','Renewal emails'],['⌁','Audit folders']]},
+    solution:{sub:'See status, risk and renewals together.',hub:'Compliance Training Software',nodes:[['✓','Compliance status'],['◇','Credentials + CPE'],['↻','Renewals + audit']]}
+  },
+  extended:{
+    problem:{sub:'External training is spread everywhere.',hub:'Scattered external training',nodes:[['▦','Learner lists'],['✉','Registration forms'],['◫','Separate events']]},
+    solution:{sub:'Manage external learning in one view.',hub:'Extended Enterprise Training',nodes:[['◎','External learners'],['▤','Catalog + registration'],['◷','Organizations + events']]}
+  }
+};
+let mode='problem';
+const lanes=[...document.querySelectorAll('[data-lane]')];
+const problemLabel=document.getElementById('problemLabel');
+const solutionLabel=document.getElementById('solutionLabel');
+function render(){
+  problemLabel.classList.toggle('active',mode==='problem');
+  solutionLabel.classList.toggle('active',mode==='solution');
+  lanes.forEach(lane=>{
+    const d=DATA[lane.dataset.lane][mode];
+    lane.classList.toggle('problem',mode==='problem');
+    lane.classList.toggle('solution',mode==='solution');
+    lane.querySelector('[data-sub]').textContent=d.sub;
+    lane.querySelector('[data-hub]').textContent=d.hub;
+    d.nodes.forEach((n,i)=>{
+      lane.querySelector('[data-i'+(i+1)+']').textContent=n[0];
+      lane.querySelector('[data-n'+(i+1)+']').textContent=n[1];
+    });
+  });
+}
+render();
+setInterval(()=>{mode=mode==='problem'?'solution':'problem';render();},3000);
 </script>
-</body></html>
+</body>
+</html>
