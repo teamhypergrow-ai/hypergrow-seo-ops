@@ -1,0 +1,1 @@
+document.querySelectorAll('.q').forEach(q=>q.onclick=()=>q.parentElement.classList.toggle('open'));document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');tt.textContent=t.dataset.t;tc.textContent=t.dataset.c})
