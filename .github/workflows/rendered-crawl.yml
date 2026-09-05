@@ -1,0 +1,50 @@
+name: HyperGrow Rendered Browser Crawl
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '40 2 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hypergrow-rendered-crawl
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install crawler
+        working-directory: rendered-crawler
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        working-directory: rendered-crawler
+        run: npx playwright install --with-deps chromium
+
+      - name: Crawl governed URLs
+        working-directory: rendered-crawler
+        run: node crawl.mjs
+
+      - name: Commit rendered evidence
+        run: |
+          git config user.name "hypergrow-rendered-crawler[bot]"
+          git config user.email "hypergrow-rendered-crawler[bot]@users.noreply.github.com"
+          git add rendered-crawler/out/*.json
+          if git diff --cached --quiet; then
+            echo "No rendered evidence changes."
+            exit 0
+          fi
+          git commit -m "Update rendered browser evidence"
+          git push
