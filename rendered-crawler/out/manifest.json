@@ -1,0 +1,44 @@
+{
+  "contract_version": "1.0",
+  "generated_at": "2026-09-05T18:13:01.934Z",
+  "source_repository": "teamhypergrow-ai/hypergrow-seo-ops",
+  "github_run_id": "33983266434",
+  "github_sha": "a50eceee8e21e66a422754b7454d12f23f5b05cb",
+  "collector": "github_actions_playwright",
+  "collector_version": "1.0.0",
+  "targets": 95,
+  "successful": 95,
+  "failed": 0,
+  "projects": {
+    "compbldr": {
+      "rows": 12,
+      "successful": 12,
+      "failed": 0
+    },
+    "performspark": {
+      "rows": 11,
+      "successful": 11,
+      "failed": 0
+    },
+    "jerhr": {
+      "rows": 22,
+      "successful": 22,
+      "failed": 0
+    },
+    "trainery": {
+      "rows": 16,
+      "successful": 16,
+      "failed": 0
+    },
+    "traineryhcm": {
+      "rows": 27,
+      "successful": 27,
+      "failed": 0
+    },
+    "traineryxchange": {
+      "rows": 7,
+      "successful": 7,
+      "failed": 0
+    }
+  }
+}
