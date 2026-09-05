@@ -2,6 +2,11 @@ name: HyperGrow Rendered Browser Crawl
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'rendered-crawler/crawl.mjs'
+      - 'rendered-crawler/package.json'
+      - '.github/workflows/rendered-crawl.yml'
   schedule:
     - cron: '40 2 * * *'
 
