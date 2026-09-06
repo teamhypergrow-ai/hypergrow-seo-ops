@@ -1,9 +1,9 @@
 {
   "contract_version": "1.0",
-  "generated_at": "2026-09-05T18:13:01.934Z",
+  "generated_at": "2026-09-06T07:19:31.147Z",
   "source_repository": "teamhypergrow-ai/hypergrow-seo-ops",
-  "github_run_id": "33983266434",
-  "github_sha": "a50eceee8e21e66a422754b7454d12f23f5b05cb",
+  "github_run_id": "34018747557",
+  "github_sha": "2ce2c8d9b11972c522a806216e1a569e41fc79bb",
   "collector": "github_actions_playwright",
   "collector_version": "1.0.0",
   "targets": 95,
