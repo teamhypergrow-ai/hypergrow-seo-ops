@@ -5,10 +5,11 @@ import os from 'node:os';
 
 const SUPABASE_URL = 'https://tstneqeqmxjalhpvoktl.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_1UlOMiEXT9-ajMIjwGVRSw_qg4pXrri';
-const COLLECTOR_VERSION = '1.0.0';
-const GLOBAL_CONCURRENCY = 3;
+const COLLECTOR_VERSION = '1.1.0';
+const GLOBAL_CONCURRENCY = 4;
 const SETTLE_MS = 1800;
 const MAX_VISIBLE_TEXT = 30000;
+const MAX_TARGETS_PER_PROJECT = 25;
 
 const normalizeText = (value = '') => value.replace(/\s+/g, ' ').trim();
 const sha256 = (value = '') => createHash('sha256').update(value).digest('hex');
@@ -34,7 +35,7 @@ async function fetchTargets() {
       'content-type': 'application/json',
       'apikey': SUPABASE_PUBLISHABLE_KEY
     },
-    body: JSON.stringify({ p_limit: 50 })
+    body: JSON.stringify({ p_limit: MAX_TARGETS_PER_PROJECT })
   });
   if (!response.ok) throw new Error(`target feed failed ${response.status}: ${await response.text()}`);
   const targets = await response.json();
@@ -47,7 +48,7 @@ async function crawlOne(browser, target) {
   const start = Date.now();
   const context = await browser.newContext({
     ignoreHTTPSErrors: true,
-    userAgent: 'HyperGrowRenderedCrawler/1.0 (+read-only SEO diagnostics)'
+    userAgent: 'HyperGrowRenderedCrawler/1.1 (+read-only SEO diagnostics)'
   });
   const page = await context.newPage();
   const base = {
@@ -95,7 +96,18 @@ async function crawlOne(browser, target) {
         hreflang: all('link[rel="alternate"][hreflang]').map(x => ({
           hreflang: x.getAttribute('hreflang'),
           href: absolute(x.getAttribute('href'))
-        }))
+        })),
+        layout_signals: {
+          viewport_width: window.innerWidth,
+          viewport_height: window.innerHeight,
+          document_width: document.documentElement.scrollWidth,
+          horizontal_overflow_px: Math.max(0, document.documentElement.scrollWidth - window.innerWidth),
+          visible_h1_count: all('h1').filter(x => {
+            const s = getComputedStyle(x);
+            const r = x.getBoundingClientRect();
+            return s.display !== 'none' && s.visibility !== 'hidden' && r.width > 0 && r.height > 0;
+          }).length
+        }
       };
     });
 
@@ -120,8 +132,8 @@ async function crawlOne(browser, target) {
       robots_meta: extracted.robots_meta,
       h1: extracted.h1,
       h2: extracted.h2,
-      internal_links: extracted.internal_links,
-      external_links: extracted.external_links,
+      internal_links: [...new Set(extracted.internal_links)].map(url => ({ url })),
+      external_links: [...new Set(extracted.external_links)].map(url => ({ url })),
       jsonld_count: extracted.jsonld.length,
       word_count: visibleText ? visibleText.split(/\s+/).length : 0,
       visible_text: visibleText.slice(0, MAX_VISIBLE_TEXT),
@@ -148,11 +160,12 @@ async function crawlOne(browser, target) {
         javascript_executed: true
       },
       metadata: {
-        evidence_contract: 'rendered_browser_v1',
+        evidence_contract: 'rendered_browser_v1.1',
         source: 'github_actions_playwright',
         target_owner_quality: target.owner_quality || null,
         target_tier_a_queries: target.tier_a_queries ?? null,
-        target_commercial_value: target.commercial_value ?? null
+        target_commercial_value: target.commercial_value ?? null,
+        layout_signals: extracted.layout_signals
       }
     };
   } catch (error) {
@@ -189,7 +202,7 @@ async function crawlOne(browser, target) {
         read_only: true,
         javascript_executed: true
       },
-      metadata: { evidence_contract: 'rendered_browser_v1', source: 'github_actions_playwright' }
+      metadata: { evidence_contract: 'rendered_browser_v1.1', source: 'github_actions_playwright' }
     };
   } finally {
     await context.close();
@@ -242,7 +255,7 @@ async function main() {
   const byProject = {};
   for (const row of results) (byProject[row.project_slug] ||= []).push(row);
   const manifest = {
-    contract_version: '1.0',
+    contract_version: '1.1',
     generated_at: generatedAt,
     source_repository: process.env.GITHUB_REPOSITORY || 'teamhypergrow-ai/hypergrow-seo-ops',
     github_run_id: process.env.GITHUB_RUN_ID || null,
@@ -257,7 +270,7 @@ async function main() {
   for (const [project, rows] of Object.entries(byProject)) {
     rows.sort((a,b) => a.url.localeCompare(b.url));
     const payload = {
-      contract_version: '1.0',
+      contract_version: '1.1',
       generated_at: generatedAt,
       source_repository: manifest.source_repository,
       github_run_id: manifest.github_run_id,
